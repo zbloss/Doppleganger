@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import HomeScreen2 from '../screens/HomeScreen2';
+import CameraPage from '../screens/camera.page';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -52,21 +53,26 @@ LinksStack.navigationOptions = {
 
 LinksStack.path = '';
 
-const SettingsStack = createStackNavigator(
+// Camera
+
+const CameraStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Settings: CameraPage,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+CameraStack.navigationOptions = {
+  tabBarLabel: 'Camera',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-camera'} />
   ),
 };
 
-SettingsStack.path = '';
+CameraStack.path = '';
+
+
+
 
 
 const HomeStack2 = createStackNavigator(
@@ -88,7 +94,7 @@ HomeStack2.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
-  SettingsStack,
+  CameraStack,
   HomeStack2
 });
 

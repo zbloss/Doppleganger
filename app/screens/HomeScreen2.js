@@ -12,40 +12,61 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Container, Content, Text, StyleProvider, Header } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Icon, Title, StyleProvider, Text, Content } from 'native-base';
+import { Card, CardItem } from 'native-base';
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
-
-
 import { MonoText } from '../components/StyledText';
+import CameraPage from './camera.page';
+
+
+
 
 export default function HomeScreen2() {
 
-  // Later on in your component
-  /*
-  async componentWillMount() {
-    await Font.loadAsync({
-      'Roboto': require('./node_modules/native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('./node_modules/native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    });
-  }
-  */
-  return (
-    <StyleProvider style={getTheme(material)}>
-      <Container>
-        <Header>
-          <Content><Text>Hey this is my Header!</Text></Content>
 
-        </Header>
-        <Content>
+  
+ return (
+  <Container>
+    <Header>
+      <Body>
+        <Title>Header</Title>
+      </Body>
+    </Header>
+
+    <Content>
+      <Card>
+        <CardItem header bordered>
           <Text>
-            I have changed the text color.
+            Welcome to my app Doppleganger!
           </Text>
-        </Content>
-      </Container>
-    </StyleProvider>
-  );
+        </CardItem>
+
+        <CardItem bordered> 
+          <Body>
+            <Text>
+              Hey look, I somehow managed to put some text inside of this card!!!
+            </Text>
+          </Body>
+        </CardItem>
+      </Card>
+
+
+      <Card>
+        <CardItem bordered>
+
+        </CardItem>  
+        
+      </Card>
+      <CameraPage />
+
+      
+    </Content>
+
+
+
+  </Container>
+);
 
 
 }
