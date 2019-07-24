@@ -1,18 +1,16 @@
+from inception_v4 import create_inception_v4
 import os
 import pandas as pd
 import numpy as np
 from PIL import Image
 from datetime import datetime
-
-
-import tensorflow as tf
-from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
-from tensorflow.keras.applications import NASNetLarge
+import pickle
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPool2D, BatchNormalization, Dropout, Flatten, Dense
 
-print(f'GPU: {tf.test.is_gpu_available()}')
+print('Building Inception v4')
+model = create_inception_v4()
+
+
 
 
 # Number of classes
@@ -33,28 +31,7 @@ all_dirs = list(set(all_dirs))
 num_classes = len(all_dirs)
 print(f'num_classes: {num_classes}')
 
-model = Sequential()
 
-model.add(Conv2D(32, kernel_size=5,input_shape=(175, 175, 1), activation = 'relu'))
-model.add(Conv2D(32, kernel_size=5, activation = 'relu'))
-model.add(MaxPool2D(2,2))
-model.add(BatchNormalization())
-model.add(Dropout(0.4))
-
-model.add(Conv2D(64, kernel_size=3,activation = 'relu'))
-model.add(Conv2D(64, kernel_size=3,activation = 'relu'))
-model.add(MaxPool2D(2,2))
-model.add(BatchNormalization())
-model.add(Dropout(0.4))
-
-model.add(Flatten())
-model.add(Dense(128, activation = "relu"))
-model.add(Dropout(0.4))
-
-model.add(Dense(8631, activation = "softmax"))
-
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-print(model.summary())
 
 print('Creating Generators...')
 train_datagen = ImageDataGenerator(
@@ -78,6 +55,7 @@ validation_generator = test_datagen.flow_from_directory(
         batch_size=128,
         class_mode='categorical',
         color_mode='grayscale')
+        
 
 # Callbacks
 tb = TensorBoard(log_dir='../logs')

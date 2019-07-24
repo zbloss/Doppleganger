@@ -1,3 +1,4 @@
 /data_science/env
 /data_science/.ipynb_checkpoints
 /data_science/logs
+/data_science/models/vggface2_keras
