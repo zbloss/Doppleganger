@@ -3,7 +3,7 @@ import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+//import { Ionicons } from '@expo/vector-icons';
 import CameraPage from './screens/camera.page';
 import AppNavigator from './navigation/AppNavigator';
 

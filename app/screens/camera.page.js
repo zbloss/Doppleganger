@@ -31,6 +31,15 @@ export default class CameraPage extends React.Component {
     handleShortCapture = async () => {
         const photoData = await this.camera.takePictureAsync();
         this.setState({ capturing: false, captures: [photoData, ...this.state.captures] })
+        // construct
+        let formData = new FormData();
+        formData.append("image", photoData.base64); 
+        formData.append("type", "base64");
+
+        this.setState({
+          latestImage: photoData.uri, // preview the photo that was taken
+          isCameraVisible: false // close the camera UI after taking the photo
+        });
     };
 
     handleLongCapture = async () => {

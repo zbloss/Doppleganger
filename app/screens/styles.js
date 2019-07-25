@@ -43,7 +43,7 @@ export default StyleSheet.create({
         borderColor: "transparent",
     },
     galleryContainer: { 
-        bottom: 100 
+        bottom: 200 
     },
     galleryImageContainer: { 
         width: 75, 
